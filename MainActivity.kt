@@ -32,6 +32,15 @@ class MainActivity : AppCompatActivity() {
         getPosts()
     }
 
+    //region Funktion zum Aufsetzen der RecyclerView
+    private fun setupRecyclerView() {
+    // unser Adapter muss der RecyclerView im Layout zugewiesen werden
+    binding.myRecView.adapter = myAdapter
+    // Ausrichtung der Recyclerview (horizontal oder vertical)
+    binding.myRecView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+    //endregion
+
     //region Funktion zum senden einer Anfrage und Empfangen / Verarbeiten der Antwort
     private fun getPosts() {
 
@@ -90,16 +99,6 @@ class MainActivity : AppCompatActivity() {
     }
     //endregion
 
-    //region Funktion zum Aufsetzen der RecyclerView
-    private fun setupRecyclerView(){
-        // Adapter wird der RecyclerView zugewiesen
-        binding.myRecView.adapter = myAdapter
-        // Zuweisung eines LayoutManagers
-        binding.myRecView.layoutManager = LinearLayoutManager(this)
-        // sollen die Elemente der Recyclerview horizontal aufgelistet werden,
-        // den LayoutManager wie folgt festlegen ->
-        //binding.myRecView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-    }
-    //endregion
+
 
 }
