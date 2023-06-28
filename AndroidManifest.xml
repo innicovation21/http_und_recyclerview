@@ -1,0 +1,3 @@
+<!-- über <application...  folgendes einfügen-->
+
+<uses-permission android:name="android.permission.INTERNET"/>
