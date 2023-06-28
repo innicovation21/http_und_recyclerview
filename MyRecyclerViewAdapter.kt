@@ -63,6 +63,22 @@ class MyRecyclerViewAdapter: RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHo
     }
     //endregion
 
+    //region onBindViewHolder
+    // Funktion zum verbinden von MyPostItem-Variablen mit den TextViews des 'recycler_view_item.xml"
+    // sie wird für jedes Element in unserer Liste aufgerufen
+    // position: Int wird bei der ersten Ausführung also 0 sein, danach 1, 2, 3 usw
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        // MyPostItem.id soll in der TextView mit der id: tvId dargestellt werden + den title entsprechend in tvTitle
+        holder.itemView.findViewById<TextView>(R.id.tvId).text = myPostItemList[position].id.toString()
+        holder.itemView.findViewById<TextView>(R.id.tvTitle).text = myPostItemList[position].title
+
+        // wenn Bilder mithilfe von Picasso dargestellt werden sollen:
+        // 1. Variable für die Url erstellen
+        // 2. //Picasso.get().load(<Variable>).into(holder.itemView...) <- entsprechender Syntax zum darstellen des Bildes
+    }
+
+    //endregion
+
     //region getItemCount
     // Funktion zum Festlegen, wieviele Elemente sich in der RecyclerView befinden
     // da wir eine leere Liste festgelegt haben, müssen wir entsprechend später noch
@@ -72,29 +88,14 @@ class MyRecyclerViewAdapter: RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHo
     }
     //endregion
 
-    //region onBindViewHolder
-    // Funktion zum verbinden von MyPostItem-Variablen mit den TextViews des 'recycler_view_item.xml"
-    // sie wird für jedes Element in unserer Liste aufgerufen
-    // position: Int wird bei der ersten Ausführung also 0 sein, danach 1, 2, 3 usw
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // MyPostItem.id soll in der TextView mit der id: tvId dargestellt werden + den title entsprechend in tvTitle
-        holder.itemView.findViewById<TextView>(R.id.tvId).text = myPostItemList[position].id.toString()
-        holder.itemView.findViewById<TextView>(R.id.tvTitle).text = myPostItemList[position].title
-    }
-
-    //endregion
+    
 
     //region Funktion zum Befüllen der myPostItemList
+    //Funktion zum Befüllen der myPostItemList
     fun setList(newList: List<MyPostItem>){
         myPostItemList = newList
-        //hinweis für notifyDataSetChanged(), falls es sich nur um ein bestimmes einzelnes Element handelt,
-        // dann könnte man entsprechend den Parameter mitgeben.
-        // Wir können diesen Hinweis an dieser Stelle ignorieren, da es sich ja um die gesamte Liste handelt
+        //Hinweis für den Adapter, dass sich der Inhalt der "myPostItemList" geändert hat (von leer -> auf befüllt)
         notifyDataSetChanged()
-        // im Falle, beispielsweise einer Liste, bei welcher wir einzelne Elemente verändern, ist
-        // notifyDataSetChanged() hingegen nicht zu empfehlen, da wir hier ja keine Überprüfung
-        // der gesamten Liste benötigen, sondern nur einzelner Elemente
-        // Beispiel: notifyItemChanged()
     }
     //endregion
 }
