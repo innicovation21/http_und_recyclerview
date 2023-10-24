@@ -72,9 +72,10 @@ class MyRecyclerViewAdapter: RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHo
         holder.itemView.findViewById<TextView>(R.id.tvId).text = myPostItemList[position].id.toString()
         holder.itemView.findViewById<TextView>(R.id.tvTitle).text = myPostItemList[position].title
 
-        // wenn Bilder mithilfe von Picasso dargestellt werden sollen:
-        // 1. Variable für die Url erstellen
-        // 2. //Picasso.get().load(<Variable>).into(holder.itemView...) <- entsprechender Syntax zum darstellen des Bildes
+        // wenn Bilder mithilfe von Picasso dargestellt werden sollen(z.b. bei jsonplaceholder photos):
+        // 0. Picasso in build.gradle implementieren
+        // 1. var myImage: String = myPostList[position].thumbnailUrl <- Variable für Bild-Url
+        // 2. Picasso.get().load(myImage).into(holder.itemView.findViewById<ImageView>(R.id.ivImage)) <- Bild in CardViewItem-ImageView einfügen
     }
 
     //endregion
